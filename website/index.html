@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beeline: Measuring and Minimizing Interaction Friction in Large Language Models">
+    <title>Beeline - Measuring and Minimizing Interaction Friction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Beeline</div>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#outcomes">Outcomes</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#ecosystem">Ecosystem</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Beeline</h1>
+                    <p class="hero-subtitle">Measuring and Minimizing Interaction Friction</p>
+                    <p class="hero-description">
+                        An open-source framework to measure and minimize "conversational friction" in Large Language Models, 
+                        reducing wasted time and computation in prompt refinement.
+                    </p>
+                    <div class="hero-badges">
+                        <span class="badge">Open Source</span>
+                        <span class="badge">NGI Zero Commons Fund</span>
+                        <span class="badge">European Infrastructure</span>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="bee-illustration">
+                        <!-- Hive -->
+                        <path d="M200 50 L150 80 L150 200 L200 230 L250 200 L250 80 Z" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+                        <path d="M200 80 L160 105 L160 195 L200 220 L240 195 L240 105 Z" fill="#fcd34d"/>
+                        <!-- Hexagonal cells -->
+                        <g opacity="0.3">
+                            <path d="M180 100 L190 95 L200 100 L200 110 L190 115 L180 110 Z" fill="#92400e"/>
+                            <path d="M200 100 L210 95 L220 100 L220 110 L210 115 L200 110 Z" fill="#92400e"/>
+                            <path d="M180 120 L190 115 L200 120 L200 130 L190 135 L180 130 Z" fill="#92400e"/>
+                            <path d="M200 120 L210 115 L220 120 L220 130 L210 135 L200 130 Z" fill="#92400e"/>
+                        </g>
+                        <!-- Bees flying back -->
+                        <g class="bee bee1">
+                            <circle cx="100" cy="150" r="8" fill="#1f2937"/>
+                            <ellipse cx="100" cy="150" rx="12" ry="8" fill="#fbbf24" stroke="#1f2937" stroke-width="1.5"/>
+                            <path d="M92 148 L88 145 M92 152 L88 155" stroke="#1f2937" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M108 148 L112 145 M108 152 L112 155" stroke="#1f2937" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M100 150 L150 100" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+                        </g>
+                        <g class="bee bee2">
+                            <circle cx="300" cy="120" r="8" fill="#1f2937"/>
+                            <ellipse cx="300" cy="120" rx="12" ry="8" fill="#fbbf24" stroke="#1f2937" stroke-width="1.5"/>
+                            <path d="M292 118 L288 115 M292 122 L288 125" stroke="#1f2937" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M308 118 L312 115 M308 122 L312 125" stroke="#1f2937" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M300 120 L230 90" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+                        </g>
+                        <g class="bee bee3">
+                            <circle cx="80" cy="200" r="8" fill="#1f2937"/>
+                            <ellipse cx="80" cy="200" rx="12" ry="8" fill="#fbbf24" stroke="#1f2937" stroke-width="1.5"/>
+                            <path d="M72 198 L68 195 M72 202 L68 205" stroke="#1f2937" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M88 198 L92 195 M88 202 L92 205" stroke="#1f2937" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M80 200 L150 210" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+                        </g>
+                        <!-- Wings animation -->
+                        <g class="wings">
+                            <ellipse cx="95" cy="148" rx="4" ry="6" fill="#e0e7ff" opacity="0.7"/>
+                            <ellipse cx="105" cy="148" rx="4" ry="6" fill="#e0e7ff" opacity="0.7"/>
+                            <ellipse cx="295" cy="118" rx="4" ry="6" fill="#e0e7ff" opacity="0.7"/>
+                            <ellipse cx="305" cy="118" rx="4" ry="6" fill="#e0e7ff" opacity="0.7"/>
+                            <ellipse cx="75" cy="198" rx="4" ry="6" fill="#e0e7ff" opacity="0.7"/>
+                            <ellipse cx="85" cy="198" rx="4" ry="6" fill="#e0e7ff" opacity="0.7"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="content-box">
+                <p class="lead-text">
+                    Currently, users waste time and computation refining prompts to get satisfactory results from LLMs. 
+                    Beeline addresses this fundamental problem with a comprehensive four-part solution.
+                </p>
+                <p>
+                    Beeline develops an open-source framework to measure and minimize "conversational friction" in Large Language Models (LLMs). 
+                    Rather than focusing solely on model accuracy, we quantify the effort required to reach user satisfaction, 
+                    creating a more realistic measure of AI efficiency.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Our Solution</h2>
+            <div class="solution-grid">
+                <div class="solution-card solution-card-first">
+                    <div class="card-icon">📊</div>
+                    <h3>Metric (I2R)</h3>
+                    <p>
+                        We define "Interaction-to-Resolution" (I2R), quantifying the effort (turns, time, tokens) 
+                        required to reach user satisfaction, rather than just model accuracy.
+                    </p>
+                </div>
+                <div class="solution-card solution-card-second">
+                    <div class="card-icon">🏆</div>
+                    <h3>Benchmark</h3>
+                    <p>
+                        An automated test suite hosted on <a href="https://www.netalia.it/" target="_blank" rel="noopener noreferrer">natalia's</a> sovereign European infrastructure to rank 
+                        open-source models by their I2R efficiency.
+                    </p>
+                </div>
+                <div class="solution-card solution-card-third">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Middleware</h3>
+                    <p>
+                        A proactive, open-source middleware layer that analyzes ambiguity and asks targeted 
+                        clarifying questions before generating heavy responses.
+                    </p>
+                </div>
+                <div class="solution-card solution-card-fourth">
+                    <div class="card-icon">🌳</div>
+                    <h3>Conversation Tree Navigation</h3>
+                    <p>
+                        A hierarchical tree-based interface allowing users to navigate past conversation points, 
+                        branch into parallel exploration threads, and selectively carry forward only the most 
+                        relevant concepts to the main conversation flow.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conversation Navigation Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Breaking the Linear Conversation Barrier</h2>
+            <div class="content-box">
+                <div class="section-image-container">
+                    <svg viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg" class="tree-navigation-illustration">
+                        <!-- Central hive/base -->
+                        <circle cx="250" cy="300" r="40" fill="#fbbf24" stroke="#f59e0b" stroke-width="3"/>
+                        <path d="M250 260 L230 280 L250 300 L270 280 Z" fill="#fcd34d"/>
+                        <text x="250" y="305" text-anchor="middle" fill="#92400e" font-size="12" font-weight="bold">Base</text>
+                        
+                        <!-- Tree branches/paths -->
+                        <path d="M250 300 L150 200" stroke="#3b82f6" stroke-width="3" fill="none" stroke-dasharray="5 5" opacity="0.5"/>
+                        <path d="M250 300 L250 150" stroke="#3b82f6" stroke-width="3" fill="none" stroke-dasharray="5 5" opacity="0.5"/>
+                        <path d="M250 300 L350 200" stroke="#3b82f6" stroke-width="3" fill="none" stroke-dasharray="5 5" opacity="0.5"/>
+                        <path d="M150 200 L100 100" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="3 3" opacity="0.4"/>
+                        <path d="M150 200 L200 120" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="3 3" opacity="0.4"/>
+                        <path d="M250 150 L200 80" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="3 3" opacity="0.4"/>
+                        <path d="M250 150 L300 80" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="3 3" opacity="0.4"/>
+                        <path d="M350 200 L400 120" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="3 3" opacity="0.4"/>
+                        <path d="M350 200 L300 100" stroke="#10b981" stroke-width="2" fill="none" stroke-dasharray="3 3" opacity="0.4"/>
+                        
+                        <!-- Conversation nodes -->
+                        <circle cx="150" cy="200" r="15" fill="#60a5fa" stroke="#3b82f6" stroke-width="2"/>
+                        <circle cx="250" cy="150" r="15" fill="#60a5fa" stroke="#3b82f6" stroke-width="2"/>
+                        <circle cx="350" cy="200" r="15" fill="#60a5fa" stroke="#3b82f6" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="12" fill="#34d399" stroke="#10b981" stroke-width="2" opacity="0.7"/>
+                        <circle cx="200" cy="120" r="12" fill="#34d399" stroke="#10b981" stroke-width="2" opacity="0.7"/>
+                        <circle cx="200" cy="80" r="12" fill="#34d399" stroke="#10b981" stroke-width="2" opacity="0.7"/>
+                        <circle cx="300" cy="80" r="12" fill="#34d399" stroke="#10b981" stroke-width="2" opacity="0.7"/>
+                        <circle cx="400" cy="120" r="12" fill="#34d399" stroke="#10b981" stroke-width="2" opacity="0.7"/>
+                        <circle cx="300" cy="100" r="12" fill="#34d399" stroke="#10b981" stroke-width="2" opacity="0.7"/>
+                        
+                        <!-- Bees navigating -->
+                        <g class="bee-nav bee-nav1">
+                            <circle cx="100" cy="100" r="6" fill="#1f2937"/>
+                            <ellipse cx="100" cy="100" rx="9" ry="6" fill="#fbbf24" stroke="#1f2937" stroke-width="1"/>
+                            <path d="M94 98 L90 96 M94 102 L90 104" stroke="#1f2937" stroke-width="1" stroke-linecap="round"/>
+                            <path d="M106 98 L110 96 M106 102 L110 104" stroke="#1f2937" stroke-width="1" stroke-linecap="round"/>
+                            <path d="M100 100 L150 200" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 3" opacity="0.8"/>
+                            <path d="M150 200 L250 300" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 3" opacity="0.8"/>
+                        </g>
+                        <g class="bee-nav bee-nav2">
+                            <circle cx="300" cy="80" r="6" fill="#1f2937"/>
+                            <ellipse cx="300" cy="80" rx="9" ry="6" fill="#fbbf24" stroke="#1f2937" stroke-width="1"/>
+                            <path d="M294 78 L290 76 M294 82 L290 84" stroke="#1f2937" stroke-width="1" stroke-linecap="round"/>
+                            <path d="M306 78 L310 76 M306 82 L310 84" stroke="#1f2937" stroke-width="1" stroke-linecap="round"/>
+                            <path d="M300 80 L250 150" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 3" opacity="0.8"/>
+                            <path d="M250 150 L250 300" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 3" opacity="0.8"/>
+                        </g>
+                        
+                        <!-- Wing animations -->
+                        <ellipse cx="97" cy="98" rx="3" ry="4" fill="#e0e7ff" opacity="0.6"/>
+                        <ellipse cx="103" cy="98" rx="3" ry="4" fill="#e0e7ff" opacity="0.6"/>
+                        <ellipse cx="297" cy="78" rx="3" ry="4" fill="#e0e7ff" opacity="0.6"/>
+                        <ellipse cx="303" cy="78" rx="3" ry="4" fill="#e0e7ff" opacity="0.6"/>
+                    </svg>
+                </div>
+                <p class="lead-text">
+                    Current LLM interfaces force users into a linear conversation flow where everything remains in context, 
+                    regardless of whether it's useful for the user or the LLM. Beeline introduces tree-based conversation navigation.
+                </p>
+                <div class="problem-solution-grid">
+                    <div class="problem-box">
+                        <h3>The Current Problem</h3>
+                        <p>
+                            In existing interfaces like ChatGPT, users can create new branches by starting fresh conversations, 
+                            but there's no way to navigate back to previous points in the same conversation or manage parallel 
+                            exploration threads within a single context.
+                        </p>
+                        <p>
+                            When users ask the LLM to clarify or elaborate on a concept, this creates a parallel exploration 
+                            flow that's useful for the user's understanding but may not be relevant to the LLM's context for 
+                            the main task. Currently, these two needs coincide—everything the LLM says remains in context, 
+                            whether it's useful for the user's learning or the LLM's task completion.
+                        </p>
+                    </div>
+                    <div class="solution-box">
+                        <h3>Beeline's Solution</h3>
+                        <p>
+                            Our middleware provides a hierarchical tree-based navigation system where users can:
+                        </p>
+                        <ul class="feature-list">
+                            <li><strong>Navigate backwards:</strong> Return to any previous point in the conversation</li>
+                            <li><strong>Create parallel branches:</strong> Explore concepts in separate threads without polluting the main context</li>
+                            <li><strong>Selective context:</strong> Choose which concepts to carry forward to the main flow</li>
+                            <li><strong>Separate user and LLM needs:</strong> Maintain exploration threads for user understanding while keeping the main context focused on task completion</li>
+                        </ul>
+                        <p>
+                            This allows users to ask for clarifications and deep dives in parallel exploration branches, 
+                            gaining understanding that helps them without cluttering the LLM's context with information 
+                            that isn't relevant to the primary task.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section id="outcomes" class="section">
+        <div class="container">
+            <h2 class="section-title">Expected Outcomes</h2>
+            <div class="outcomes-list">
+                <div class="outcome-item">
+                    <div class="outcome-number">01</div>
+                    <div class="outcome-content">
+                        <h3>I2R Metric Definition</h3>
+                        <p>A standardized way to measure interaction efficiency in LLM conversations</p>
+                    </div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-number">02</div>
+                    <div class="outcome-content">
+                        <h3>Public Leaderboard</h3>
+                        <p>A transparent ranking system for model efficiency hosted on European infrastructure</p>
+                    </div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-number">03</div>
+                    <div class="outcome-content">
+                        <h3>Middleware Library</h3>
+                        <p>Open-source tools for developers to reduce friction in their AI applications</p>
+                    </div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-number">04</div>
+                    <div class="outcome-content">
+                        <h3>Tree-Based Navigation Interface</h3>
+                        <p>A hierarchical conversation navigation system enabling parallel exploration and selective context management</p>
+                    </div>
+                </div>
+            </div>
+            <div class="alignment-box">
+                <h3>NGI Alignment</h3>
+                <p>
+                    This project aligns with NGI goals by increasing transparency and reducing the energy/time cost 
+                    of AI interactions, making AI more accessible and efficient for everyone.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Challenges Section -->
+    <section id="challenges" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Technical Challenges</h2>
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <h3>1. Algorithmic Definition of "Resolution"</h3>
+                    <p><strong>Challenge:</strong> Defining when a user is "satisfied" programmatically without explicit feedback.</p>
+                    <p><strong>Solution:</strong> We will train a "Resolution Classifier" model using hybrid datasets of explicit signals (user clicks "accept") and implicit signals (conversation halts, sentiment analysis) to predict resolution probability.</p>
+                </div>
+                <div class="challenge-card">
+                    <h3>2. The "Annoyance" Threshold</h3>
+                    <p><strong>Challenge:</strong> A proactive middleware that asks too many clarifying questions becomes annoying and increases friction.</p>
+                    <p><strong>Solution:</strong> We will implement a dynamic "Ambiguity Confidence Threshold" that only intervenes when confidence in user intent falls below a specific value, fine-tuned using Reinforcement Learning signals.</p>
+                </div>
+                <div class="challenge-card">
+                    <h3>3. Domain Specificity</h3>
+                    <p><strong>Challenge:</strong> Interaction patterns differ by domain (e.g., Coding vs. Creative Writing).</p>
+                    <p><strong>Solution:</strong> The benchmark will be segmented into 4 key domains (Coding, Technical Q&A, Creative, Extraction), providing distinct I2R scores for each to ensure fair comparison.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiation Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">How We Differ</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>Beyond Static Accuracy</h3>
+                    <p>
+                        Unlike MMLU, GLUE, or MT-Bench which measure single-turn accuracy or final answer quality, 
+                        Beeline measures the "journey" - the human effort (time/turns) required, which is the real cost driver in adoption.
+                    </p>
+                </div>
+                <div class="comparison-item">
+                    <h3>Proactive vs. Reactive</h3>
+                    <p>
+                        While modern LLM interfaces are flexible but purely reactive, our middleware introduces proactivity 
+                        to general-purpose LLMs by detecting ambiguity before generation and asking clarifying questions.
+                    </p>
+                </div>
+                <div class="comparison-item">
+                    <h3>Open Infrastructure</h3>
+                    <p>
+                        Unlike proprietary labs that optimize internally with closed methods, we provide a fully open-source 
+                        toolchain on sovereign European infrastructure, ensuring transparent and accessible efficiency metrics.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section id="ecosystem" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Ecosystem & Engagement</h2>
+            <div class="ecosystem-content">
+                <div class="ecosystem-item">
+                    <h3>Our Ecosystem</h3>
+                    <p>
+                        Our ecosystem spans AI researchers, Open Source developers (HuggingFace, Linux Foundation), 
+                        and European SMEs looking for efficient AI deployment.
+                    </p>
+                </div>
+                <div class="ecosystem-item">
+                    <h3>Engagement Strategy</h3>
+                    <ul class="engagement-list">
+                        <li><strong>Code & Data:</strong> All outputs released under Apache 2.0/MIT licenses</li>
+                        <li><strong>Public Leaderboard:</strong> Hosted on <a href="https://www.netalia.it/" target="_blank" rel="noopener noreferrer">natalia's</a> infrastructure to drive traffic and competition</li>
+                        <li><strong>Scientific Community:</strong> Publications in Open Access venues (arXiv, EMNLP)</li>
+                        <li><strong>Deployment:</strong> Middleware offered as standard module to <a href="https://www.netalia.it/" target="_blank" rel="noopener noreferrer">natalia's</a> cloud customers</li>
+                        <li><strong>Events:</strong> Presentations at FOSDEM and dedicated webinars for developer training</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Partners</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <h3><a href="https://aivb.ai" target="_blank" rel="noopener noreferrer">aivb.ai</a></h3>
+                    <p class="partner-role">Lead Partner</p>
+                    <p>Extensive experience in coordinating high-impact national and European research efforts, including PNRR/NextGenerationEU projects.</p>
+                </div>
+                <div class="partner-card">
+                    <h3><a href="https://www.netalia.it/" target="_blank" rel="noopener noreferrer">natalia</a></h3>
+                    <p class="partner-role">Infrastructure Partner</p>
+                    <p>Veteran in critical digital infrastructure and AI projects, providing sovereign European infrastructure for hosting benchmarks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Get Involved</h2>
+            <div class="contact-content">
+                <p class="contact-intro">
+                    Interested in learning more or contributing to Beeline? We welcome collaboration from researchers, 
+                    developers, and organizations aligned with our mission.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <strong>Project Lead:</strong> Matteo Mendula
+                    </div>
+                    <div class="contact-item">
+                        <strong>Organizations:</strong> <a href="https://aivb.ai" target="_blank" rel="noopener noreferrer">aivb.ai</a> (Lead) & <a href="https://www.netalia.it/" target="_blank" rel="noopener noreferrer">natalia</a> (Partner)
+                    </div>
+                    <div class="contact-item">
+                        <strong>Country:</strong> Italy
+                    </div>
+                    <div class="contact-item">
+                        <strong>Fund:</strong> NGI Zero Commons Fund
+                    </div>
+                </div>
+                <div class="github-link">
+                    <a href="https://github.com/[your-username]/beeline" class="github-button" target="_blank" rel="noopener noreferrer">
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Beeline Project. Open Source under Apache 2.0/MIT License.</p>
+            <p class="footer-note">Part of the NGI Zero Commons Fund initiative</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -63,5 +63,3 @@ This project is currently in the planning and development phase. Check back soon
 **Part of the NGI Zero Commons Fund initiative**
 
 For more information, please contact the project team.
-
-# Beeline

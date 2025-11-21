@@ -53,9 +53,20 @@ body {
 }
 
 .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    display: block;
+    flex-shrink: 0;
 }
 
 .nav-links {
@@ -112,7 +123,7 @@ body {
 }
 
 .bee {
-    animation: fly 3s ease-in-out infinite;
+    animation: fly 2s ease-in-out infinite;
 }
 
 .bee1 {
@@ -128,7 +139,8 @@ body {
 }
 
 .wings ellipse {
-    animation: flap 0.2s ease-in-out infinite;
+    animation: flap 1.5s ease-in-out infinite;
+    transform-origin: center;
 }
 
 @keyframes fly {
@@ -145,7 +157,7 @@ body {
         transform: scaleY(1);
     }
     50% {
-        transform: scaleY(0.7);
+        transform: scaleY(0.9);
     }
 }
 
@@ -481,7 +493,7 @@ body {
 }
 
 .bee-nav {
-    animation: navigate 4s ease-in-out infinite;
+    animation: navigate 3s ease-in-out infinite;
 }
 
 .bee-nav1 {

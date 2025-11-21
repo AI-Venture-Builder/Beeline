@@ -50,7 +50,7 @@ A hierarchical tree-based interface allowing users to navigate past conversation
 
 ## Website
 
-Visit our project website: [website/index.html](website/index.html)
+Visit our project website: [docs/index.html](docs/index.html)
 
 *(The website will be available on GitHub Pages once the project is launched)*
 

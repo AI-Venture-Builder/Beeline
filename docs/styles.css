@@ -282,7 +282,13 @@ body {
     }
     
     .solution-card-fourth {
-        grid-column: 1 / -1;
+        grid-column: 1;
+        justify-self: center;
+        max-width: 500px;
+    }
+    
+    .solution-card-fifth {
+        grid-column: 2;
         justify-self: center;
         max-width: 500px;
     }
@@ -526,6 +532,35 @@ body {
     gap: 2rem;
     max-width: 1000px;
     margin: 0 auto;
+}
+
+/* GraphRAG Section */
+.graphrag-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.graphrag-item {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.graphrag-item h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.graphrag-item p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
 }
 
 .comparison-item {
